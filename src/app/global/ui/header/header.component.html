@@ -1,0 +1,6 @@
+<div class="flex bg-background px-8 py-4 items-center justify-between gap-8">
+  <h4>Bookstore</h4>
+  <button brnToggle hlm [state]="isDarkModeToggled" (toggled)="handleDarkModeToggle($event)">
+    <hlm-icon size='base' [name]="isDarkModeToggled === 'on' ? 'lucideMoon' : 'lucideSun' " />
+  </button>
+  </div>
