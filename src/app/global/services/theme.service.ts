@@ -1,4 +1,10 @@
-import { inject, Injectable, OnDestroy, PLATFORM_ID, RendererFactory2 } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  OnDestroy,
+  PLATFORM_ID,
+  RendererFactory2,
+} from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,11 +14,14 @@ import { takeUntil } from 'rxjs/operators';
  * It synchronizes the theme with local storage and updates the DOM accordingly.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService implements OnDestroy {
   private readonly _platformId = inject(PLATFORM_ID);
-  private readonly _renderer = inject(RendererFactory2).createRenderer(null, null);
+  private readonly _renderer = inject(RendererFactory2).createRenderer(
+    null,
+    null,
+  );
   private readonly _document = inject(DOCUMENT);
   private readonly _theme$ = new ReplaySubject<'light' | 'dark'>(1);
   public theme$ = this._theme$.asObservable();
@@ -50,7 +59,8 @@ export class ThemeService implements OnDestroy {
    * Updates the local storage and emits the new theme.
    */
   public toggleDarkMode(): void {
-    const newTheme = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+    const newTheme =
+      localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
     localStorage.setItem('theme', newTheme);
     this._theme$.next(newTheme);
   }
