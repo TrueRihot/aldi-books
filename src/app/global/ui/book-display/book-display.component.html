@@ -1,0 +1,13 @@
+@for (category of categorizedBooks; track category.range) {
+  <h2 [class]="hlmH4 + ' text-center'">{{category.range | mergeRange}}</h2>
+  @if (category.books.length > 0) {
+      <div class="flex flex-wrap justify-start align-middle gap-4 w-full my-4">
+          @for (book of category.books; track book.name) {
+              <app-books-card [book]="book"></app-books-card>
+          }
+      </div>
+  } @else {
+    <p [class]="hlmMuted + ' my-4 text-center'">No publications</p>
+  }
+  <brn-separator hlmSeparator class="my-4" />
+}

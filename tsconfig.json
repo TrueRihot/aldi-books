@@ -15,8 +15,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "ES2022",
     "lib": [
       "ES2022",
       "dom"
@@ -69,6 +69,12 @@
       ],
       "@spartan-ng/ui-typography-helm": [
         "./src/app/ui/ui-typography-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-spinner-helm": [
+        "./src/app/global/ui/ui-spinner-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-separator-helm": [
+        "./src/app/global/ui/ui-separator-helm/src/index.ts"
       ]
     }
   },

@@ -1,3 +1,10 @@
 <app-page>
-  <h1 [class]="hlmH1">Bookstore</h1>
+  @if (!isFetching && books && books.length > 0) {
+    <app-book-display  [books]="books"/>
+  } @else {
+    <hlm-spinner />
+  }
+  @if (!isFetching && (!books || books?.length === 0)) {
+    <p>It seems like no books are available</p>
+  }
 </app-page>
