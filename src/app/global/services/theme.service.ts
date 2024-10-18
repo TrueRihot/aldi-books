@@ -20,7 +20,7 @@ export class ThemeService implements OnDestroy {
   private readonly _platformId = inject(PLATFORM_ID);
   private readonly _renderer = inject(RendererFactory2).createRenderer(
     null,
-    null,
+    null
   );
   private readonly _document = inject(DOCUMENT);
   private readonly _theme$ = new ReplaySubject<'light' | 'dark'>(1);
@@ -48,7 +48,7 @@ export class ThemeService implements OnDestroy {
    * Adds the 'dark' class if the theme is 'dark', otherwise removes it.
    */
   private toggleClassOnThemeChanges(): void {
-    this.theme$.pipe(takeUntil(this._destroyed$)).subscribe((theme) => {
+    this.theme$.pipe(takeUntil(this._destroyed$)).subscribe(theme => {
       const classList = this._document.documentElement.classList;
       theme === 'dark' ? classList.add('dark') : classList.remove('dark');
     });
