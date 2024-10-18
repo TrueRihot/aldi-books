@@ -1,0 +1,66 @@
+<hlm-dialog >
+  <button id="add-book" brnDialogTrigger hlmBtn class="fixed bottom-4 right-4">Add a Book</button>
+  <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
+    <hlm-dialog-header>
+      <h3 hlmDialogTitle>Add another Book</h3>
+    </hlm-dialog-header>
+    @if (loading) {
+      <div class="absolute bg-background w-full h-full">
+        <hlm-spinner class="absolute left-1/2 top-1/2 !-translate-x-1/2 !-translate-y-1/2"></hlm-spinner>
+      </div>
+    }
+    <form [formGroup]="form" class="flex flex-col gap-4">
+      <hlm-form-field>
+        <input class="w-80"
+               hlmInput
+               id="name"
+               formControlName="name"
+               type="text"
+               placeholder="Title"
+               required />
+        @if(form.controls.name.errors && !form.controls.name.untouched) {
+          <span class="text-xs text-red-600">Please insert a valid Name</span>
+        }
+          </hlm-form-field>
+      <hlm-form-field>
+        <input class="w-80"
+               hlmInput
+               type="text"
+               id="author"
+               formControlName="author"
+               placeholder="Author"
+               required />
+        @if(form.controls.author.errors && !form.controls.author.untouched) {
+          <span class="text-xs text-red-600">Please insert a valid Author</span>
+        }
+      </hlm-form-field>
+      <hlm-form-field>
+        <input class="w-80"
+               hlmInput
+               type="number"
+               id="publishYear"
+               formControlName="publishYear"
+               placeholder="Published Year"
+               required />
+       @if(form.controls.publishYear.errors && !form.controls.publishYear.untouched) {
+        <span class="text-xs text-red-600" >Please insert a valid Year</span>
+       }
+      </hlm-form-field>
+      <hlm-form-field>
+        <input class="w-80"
+               hlmInput
+               id="category"
+               formControlName="category"
+               type="text"
+               placeholder="Genre"
+               required />
+        @if(form.controls.category.errors && !form.controls.category.untouched) {
+          <span class="text-xs text-red-600" >Please insert a valid Category</span>
+        }
+      </hlm-form-field>
+    </form>
+    <hlm-dialog-footer>
+      <button hlmBtn type="submit" [disabled]="!form.valid || form.errors" (click)="onSubmit()">Submit Book</button>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>

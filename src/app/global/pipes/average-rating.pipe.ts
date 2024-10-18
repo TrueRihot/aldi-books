@@ -8,7 +8,7 @@ import { Rating } from '../../../types/types';
 export class AverageRatingPipe implements PipeTransform {
   transform(ratings: Rating[]): number | null {
     if (!ratings || ratings.length === 0) {
-      return null;
+      return 0;
     }
     const total = ratings.reduce((sum, rating) => sum + rating.value, 0);
     return Math.round((total / ratings.length) * 10) / 10;

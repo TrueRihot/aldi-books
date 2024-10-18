@@ -6,6 +6,7 @@ import { Book } from '../../../types/types';
 import { HlmCardDirective } from '../../global/ui/ui-card-helm/src';
 import { BookDisplayComponent } from '../../global/ui/book-display/book-display.component';
 import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { AddBookComponent } from '../../global/ui/add-book/add-book.component';
 
 @Component({
   selector: 'app-books-page',
@@ -15,6 +16,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
     HlmCardDirective,
     BookDisplayComponent,
     HlmSpinnerComponent,
+    AddBookComponent,
   ],
   templateUrl: './books-page.component.html',
   styleUrl: './books-page.component.scss',

@@ -57,4 +57,8 @@ export class DataService {
     }
     return obs;
   }
+
+  postBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(`${this.apiUrl}/books`, book);
+  }
 }

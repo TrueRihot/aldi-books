@@ -2,7 +2,7 @@
   <h2 [class]="hlmH4 + ' text-center'">{{category.range | mergeRange}}</h2>
   @if (category.books.length > 0) {
       <div class="flex flex-wrap justify-start align-middle gap-4 w-full my-4">
-          @for (book of category.books; track book.name) {
+          @for (book of category.books; track book.name + book.author) {
               <app-books-card [book]="book"></app-books-card>
           }
       </div>
