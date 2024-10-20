@@ -46,6 +46,10 @@ export class BookDisplayComponent implements OnInit, OnChanges {
     this.categorizeBooks();
   }
 
+  /**
+   * Lifecycle hook that is called when any data-bound property of a directive changes.
+   * @param {SimpleChanges} changes - Object of changes.
+   */
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.['books']) {
       this.categorizeBooks();

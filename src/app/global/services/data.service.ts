@@ -5,6 +5,9 @@ import { tap } from 'rxjs/operators';
 import { Book } from '../../../types/types';
 import { environment } from '../../../environments/environment';
 
+/**
+ * DataService is responsible for fetching and caching book data from the API.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +19,10 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Fetches books from the cache if available and not expired, otherwise fetches from the API.
+   * @returns {Observable<Book[] | null>} An observable containing the list of books or null.
+   */
   public getBooks(): Observable<Book[] | null> {
     const now = Date.now();
     if (
@@ -29,6 +36,10 @@ export class DataService {
     }
   }
 
+  /**
+   * Fetches the latest books from the API and updates the cache.
+   * @returns {Observable<Book[]>} An observable containing the list of books.
+   */
   public getLatestBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.apiUrl}/books`).pipe(
       tap(books => {
@@ -38,6 +49,11 @@ export class DataService {
     );
   }
 
+  /**
+   * Logs information about the observable being returned.
+   * @param {Observable<Book[] | null>} obs - The observable to log information about.
+   * @returns {Observable<Book[] | null>} The same observable passed as parameter.
+   */
   private logReturnMiddleware(obs: Observable<Book[] | null>) {
     console.log('Data service returning observable');
     console.log('------------------------');
@@ -58,10 +74,20 @@ export class DataService {
     return obs;
   }
 
+  /**
+   * Posts a new book to the API.
+   * @param {Book} book - The book to be posted.
+   * @returns {Observable<Book>} An observable containing the posted book.
+   */
   private postBook(book: Book): Observable<Book> {
     return this.http.post<Book>(`${this.apiUrl}/books`, book);
   }
 
+  /**
+   * Inserts a new book into the cache and posts it to the API.
+   * @param {Book} book - The book to be inserted.
+   * @returns {Observable<Book>} An observable containing the inserted book.
+   */
   public insertBook(book: Book): Observable<Book> {
     return this.postBook(book).pipe(
       tap(() => {

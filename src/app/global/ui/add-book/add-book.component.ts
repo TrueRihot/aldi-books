@@ -25,7 +25,6 @@ import {
 import { Book } from '../../../../types/types';
 import { DataService } from '../../services/data.service';
 import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-book',

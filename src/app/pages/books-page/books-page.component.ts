@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PageComponent } from '../../global/ui/page/page.component';
-import { hlmH1 } from '../../global/ui/ui-typography-helm/src';
 import { DataService } from '../../global/services/data.service';
 import { Book } from '../../../types/types';
 import { HlmCardDirective } from '../../global/ui/ui-card-helm/src';
@@ -22,7 +21,6 @@ import { AddBookComponent } from '../../global/ui/add-book/add-book.component';
   styleUrl: './books-page.component.scss',
 })
 export class BooksPageComponent implements OnInit {
-  protected readonly hlmH1 = hlmH1;
   public books: Book[] | null = [];
   public isFetching: boolean = false;
 
@@ -33,8 +31,6 @@ export class BooksPageComponent implements OnInit {
     this.dataService.getBooks().subscribe();
 
     this.dataService.cache$.subscribe(res => {
-      console.log('book update');
-      console.log(res);
       this.books = res;
       this.isFetching = false;
     });
