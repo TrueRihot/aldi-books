@@ -25,6 +25,7 @@ import {
 import { Book } from '../../../../types/types';
 import { DataService } from '../../services/data.service';
 import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-book',
@@ -81,10 +82,8 @@ export class AddBookComponent {
     if (this.form.valid) {
       const book: Book = this.form.value as Book;
       this.loading = true;
-      this.dataService.postBook(book).subscribe(() => {
+      this.dataService.insertBook(book).subscribe(res => {
         this.loading = false;
-        this.form.reset();
-        this.dataService.getLatestBooks();
         this.dialog.close(null, 0);
       });
     }

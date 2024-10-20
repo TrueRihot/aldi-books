@@ -30,7 +30,11 @@ export class BooksPageComponent implements OnInit {
 
   ngOnInit() {
     this.isFetching = true;
-    this.dataService.getBooks().subscribe(res => {
+    this.dataService.getBooks().subscribe();
+
+    this.dataService.cache$.subscribe(res => {
+      console.log('book update');
+      console.log(res);
       this.books = res;
       this.isFetching = false;
     });

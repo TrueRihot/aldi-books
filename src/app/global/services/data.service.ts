@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class DataService {
   private apiUrl = environment.apiPath;
-  private cache$ = new BehaviorSubject<Book[] | null>(null);
+  public cache$ = new BehaviorSubject<Book[] | null>(null);
   private lastFetchTime: number | null = null;
   private cacheDuration = 60000; // Cache duration in milliseconds (e.g., 1 minute)
 
@@ -58,7 +58,17 @@ export class DataService {
     return obs;
   }
 
-  postBook(book: Book): Observable<Book> {
+  private postBook(book: Book): Observable<Book> {
     return this.http.post<Book>(`${this.apiUrl}/books`, book);
+  }
+
+  public insertBook(book: Book): Observable<Book> {
+    return this.postBook(book).pipe(
+      tap(() => {
+        const books = this.cache$.value;
+        if (!books) return;
+        this.cache$.next([book, ...books]);
+      })
+    );
   }
 }
